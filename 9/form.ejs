@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment 9 - Dynamic Form</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; }
+        .container { max-width: 500px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        h1 { color: #1c1e21; text-align: center; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #42b72a; border: none; color: white; font-size: 1.1rem; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #36a420; }
+        .success-msg { background: #e7f3ff; color: #1877f2; padding: 15px; border-radius: 6px; margin-bottom: 20px; text-align: center; }
+        .result { background: #f9f9f9; padding: 15px; border: 1px dashed #ccc; margin-top: 20px; }
+        a { display: block; text-align: center; margin-top: 20px; color: #1877f2; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dynamic Form</h1>
+
+        <% if (message) { %>
+            <div class="success-msg"><%= message %></div>
+        <% } %>
+
+        <form action="/submit" method="POST">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit">Submit Data</button>
+        </form>
+
+        <% if (data) { %>
+            <div class="result">
+                <h3>Submitted Data:</h3>
+                <p><strong>Name:</strong> <%= data.name %></p>
+                <p><strong>Email:</strong> <%= data.email %></p>
+                <p><strong>Message:</strong> <%= data.message %></p>
+            </div>
+        <% } %>
+
+        <a href="/">Back to Home</a>
+    </div>
+</body>
+</html>
