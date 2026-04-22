@@ -1,21 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ItemsComponent } from './items.component';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [ItemsComponent],
   template: `
-    <h1>Posts</h1>
-    <div *ngFor="let post of posts">
-      <h3>{{post.title}}</h3>
-      <p>{{post.body}}</p>
+    <div style="padding: 20px; font-family: sans-serif;">
+      <h1>Angular Experiment 6</h1>
+      <hr>
+      <app-items></app-items>
     </div>
   `
 })
-export class AppComponent implements OnInit {
-  posts: any[] = [];
-
-  ngOnInit() {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(res => res.json())
-      .then(data => this.posts = data.slice(0, 10));
-  }
-}
+export class AppComponent {}
